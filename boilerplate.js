@@ -6,7 +6,7 @@
         pluginName : 'yourPlugin', // $('.someClass').yourPlugin();
 
         // Config Defaults. Overridden by Map arg passed to plugin init.
-        defaults : {
+        defaultConfig : {
 
             // Config values here
 
@@ -21,7 +21,7 @@
 
                 var that = this;
 
-                // that.opts: Options to use for this plugin instance. (Defaults overridden by given options)
+                // that.config: Options to use for this plugin instance. (Defaults overridden by given options)
                 // that.$elem: jQuery element for this plugin instance.
 
 

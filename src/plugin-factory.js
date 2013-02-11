@@ -8,9 +8,9 @@ com.tniswong.jq = com.tniswong.jq || {};
 
         plugins : {},
 
-        createPlugin : function(pluginName, defaults, methods) {
+        createPlugin : function(pluginName, defaultConfig, methods) {
 
-            this.plugins[pluginName] = new com.tniswong.jq.PluginDelegate(pluginName, defaults);
+            this.plugins[pluginName] = new com.tniswong.jq.PluginDelegate(pluginName, defaultConfig);
 
             $.each(methods, function(key, value) {
                 com.tniswong.jq.PluginFactory.plugins[pluginName].PluginContext.prototype[key] = value;
@@ -42,11 +42,11 @@ com.tniswong.jq = com.tniswong.jq || {};
 
     };
 
-    com.tniswong.jq.PluginDelegate = function(name, defaults) {
+    com.tniswong.jq.PluginDelegate = function(name, defaultConfig) {
 
         this.name = name;
 
-        this.defaults = defaults;
+        this.defaultConfig = defaultConfig;
 
         this.methodCall = function($elem, method) {
 
@@ -56,7 +56,7 @@ com.tniswong.jq = com.tniswong.jq || {};
 
                 var delegate = com.tniswong.jq.PluginFactory.plugins[this.name];
 
-                pluginContext = new delegate.PluginContext($elem, this.defaults, method);
+                pluginContext = new delegate.PluginContext($elem, this.defaultConfig, method);
                 pluginContext.init();
 
                 $elem.data(this.name, pluginContext);
@@ -75,21 +75,21 @@ com.tniswong.jq = com.tniswong.jq || {};
             return !pluginContext && (!method || $.isPlainObject(method))
         }
 
-        this.PluginContext = function($elem, defaults, opts) {
+        this.PluginContext = function($elem, defaultConfig, config) {
 
             this.$elem = $elem;
 
-            this.opts = $.extend(defaults, opts);
+            this.config = $.extend(defaultConfig, config);
 
         };
 
     };
 
-    $.createPlugin = function(name, defaults, methods) {
+    $.createPlugin = function(name, defaultConfig, methods) {
         if(typeof name === "string") {
-            com.tniswong.jq.PluginFactory.createPlugin(name, defaults, methods);
-        } else if($.isPlainObject(name) && !defaults && !methods) {
-            com.tniswong.jq.PluginFactory.createPlugin(name.pluginName, name.defaults, name.methods);
+            com.tniswong.jq.PluginFactory.createPlugin(name, defaultConfig, methods);
+        } else if($.isPlainObject(name) && !defaultConfig && !methods) {
+            com.tniswong.jq.PluginFactory.createPlugin(name.pluginName, name.defaultConfig, name.methods);
         }
     };
 

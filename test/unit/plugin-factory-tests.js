@@ -8,7 +8,7 @@ var testPlugin = {
 
     pluginName: 'testPlugin',
 
-    defaults : {
+    defaultConfig : {
 
     },
 
@@ -217,17 +217,17 @@ test("Created Plugin has $elem available", function() {
 
 });
 
-test("Created Plugin has opts available", function() {
+test("Created Plugin has config available", function() {
 
     var options;
 
     var mockTestPlugin = $.extend(testPlugin, {
-        defaults : {
+        defaultConfig : {
             someValue : "someValue"
         },
         methods : {
             init : function() {
-                options = this.opts;
+                options = this.config;
             }
         }
     });
@@ -236,22 +236,22 @@ test("Created Plugin has opts available", function() {
 
     $(document).testPlugin();
 
-    deepEqual(options, mockTestPlugin.defaults, "opts was available");
+    deepEqual(options, mockTestPlugin.defaultConfig, "config was available");
 
 });
 
-test("Created Plugin opts overrides defaults", function() {
+test("Created Plugin config overrides defaults", function() {
 
-    var options;
+    var config;
 
     var mockTestPlugin = $.extend(testPlugin, {
-        defaults : {
+        defaultConfig : {
             someValue : "someValue",
             anotherValue : "anotherValue"
         },
         methods : {
             init : function() {
-                options = this.opts;
+                config = this.config;
             }
         }
     });
@@ -261,7 +261,7 @@ test("Created Plugin opts overrides defaults", function() {
     var configOptions = {someValue: 'notSomeValue'};
     $(document).testPlugin(configOptions);
 
-    deepEqual(options, $.extend(mockTestPlugin.defaults, configOptions), "opts was available and extended");
-    equal(options.someValue, "notSomeValue", "Opt was overridden properly");
+    deepEqual(config, $.extend(mockTestPlugin.defaultConfig, configOptions), "config was available and extended");
+    equal(config.someValue, "notSomeValue", "Opt was overridden properly");
 
 });
