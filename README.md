@@ -27,37 +27,114 @@ Getting Started
 
 Creating your plugin:
 ```javascript
-    (function($, document, window) {
+(function($, document, window) {
 
-        var myPlugin = {
+    var myPlugin = {
 
-            pluginName : "myPlugin",
+        pluginName : "myPlugin",
 
-            defaultConfig : {
-                // your default config
-            },
+        defaultConfig : {
+            // your default config
+        },
 
-            methods : {
+        methods : {
 
-                init : function() {
-                    // initializer
-                }
-
-                // your methods here
+            init : function() {
+                // initializer
             }
 
+            // your methods here
         }
 
-        $.createPlugin(myPlugin);
+    }
 
-    })(jQuery, document, window);
+    $.createPlugin(myPlugin);
+
+})(jQuery, document, window);
 ```
 
 Calling your plugin:
 ```javascript
-    // using your defaultConfig
-    $('.someClass').myPlugin();
+// using your defaultConfig
+$('.someClass').myPlugin();
 
-    // using custom config
-    $('.anotherClass').myPlugin({someProperty: "override"});
+// using custom config
+$('.anotherClass').myPlugin({someProperty: "override"});
+```
+
+Calling a method:
+```javascript
+methods : {
+
+    init : function() {
+        // initializer
+    },
+
+    myMethod : function() {
+
+        // The element this plugin instance is attached to.
+        var $attachedElement = this.$elem;
+
+        // defaultConfig with with property overrides from custom config, if any.
+        var conf = this.config;
+
+    }
+
+}
+
+var $myPlugin = $('.someClass').myPlugin();
+$myPlugin.myPlugin('myMethod');
+```
+
+Return values work too:
+```javascript
+methods : {
+
+    init : function() {
+        // initializer
+    },
+
+    myMethod : function() {
+
+        // The element this plugin instance is attached to.
+        var $attachedElement = this.$elem;
+
+        // defaultConfig with with property overrides from custom config, if any.
+        var conf = this.config;
+
+        return "thisIsMyMethod"
+
+    }
+
+}
+
+var $myPlugin = $('.someClass').myPlugin();
+
+// result = "thisIsMyMethod"
+var result = $myPlugin.myPlugin('myMethod');
+```
+
+So do arguments:
+```javascript
+methods : {
+
+    init : function() {
+        // initializer
+    },
+
+    myMethod : function(arg1, arg2) {
+
+        // The element this plugin instance is attached to.
+        var $attachedElement = this.$elem;
+
+        // defaultConfig with with property overrides from custom config, if any.
+        var conf = this.config;
+
+    }
+
+}
+
+var $myPlugin = $('.someClass').myPlugin();
+
+$myPlugin.myPlugin('myMethod', 'someArg', 'anotherArg');
 ```
