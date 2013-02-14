@@ -11,7 +11,7 @@ Why should you use it?
 --------------
 
 I created PluginFactory because I found myself needing to create new UI components in projects. Some of these were
-simple, while others were more complex. I love the ease of use of jQueryUI and the standard way of calling methods, and
+simple, while others were more complex. I love the ease of use of jQueryUI and the standard way of invoking methods, and
 I wanted to replicate that in all my new component plugins, so I did.
 
 But.
@@ -54,7 +54,7 @@ Consider this example
          */
         methods : {
 
-            // This method is called when a new plugin instance is created.
+            // This method is invoked when a new plugin instance is created.
             init : function() {
                 // init code
             }
@@ -84,12 +84,12 @@ Initialize optional configurations:
 var $foo = $('.someClass').foo({bar: "baz"});
 ```
 
-Calling a method:
+Invoking a method:
 ```javascript
-$foo.foo('qux'); // calls qux method.
+$foo.foo('qux'); // invokes qux method.
 ```
 
-Call a method with arguments:
+Invoke a method with arguments:
 ```javascript
 $foo.foo('qux', 'arg1', 'arg2'); // 'arg3', etc...
 ```
