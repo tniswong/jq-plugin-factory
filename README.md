@@ -92,6 +92,7 @@ $foo.foo('qux'); // calls qux method.
 Call a method with arguments:
 ```javascript
 $foo.foo('qux', 'arg1', 'arg2'); // 'arg3', etc...
+```
 
 Return values in methods work too:
 ```javascript
