@@ -98,3 +98,26 @@ Return values in methods work too:
 ```javascript
 var result = $foo.foo('qux');
 ```
+
+Build from source
+--------------
+
+Install grunt-cli
+```
+npm install -g grunt-cli
+```
+
+From the project root, install the Node dependencies
+```
+npm install
+```
+
+Test for grunt
+```
+grunt -V
+```
+
+Build the project
+```
+grunt
+```
