@@ -34,7 +34,7 @@ module.exports = function(grunt) {
                             grunt.file.read("mit-license.txt") + ' */\n'
                 },
                 files: {
-                    'dist/jq.plugin-factory.min.js' : ['src/jq-plugin-factory.js']
+                    'dist/jq.plugin-factory.min.js' : ['src/jq.plugin-factory.js']
                 }
             }
         }
