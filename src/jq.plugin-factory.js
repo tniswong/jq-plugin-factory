@@ -20,14 +20,16 @@ com.tniswong.jq = com.tniswong.jq || {};
 
             $.fn[pluginName] = function (method) {
 
-                var returnValue, delegate = com.tniswong.jq.PluginFactory.plugins[pluginName];
+                var returnValue,
+                    delegate = com.tniswong.jq.PluginFactory.plugins[pluginName],
+                    args = arguments;
 
                 if (com.tniswong.jq.PluginFactory._single$ElementAndMethodIsString(this, method)) {
-                    returnValue = delegate.methodCall($(this[0]), method, Array.prototype.slice.call(arguments, 1));
+                    returnValue = delegate.methodCall($(this[0]), method, Array.prototype.slice.call(args, 1));
                 } else {
 
                     this.each(function (index, element) {
-                        delegate.methodCall($(element), method, Array.prototype.slice.call(arguments, 1));
+                        delegate.methodCall($(element), method, Array.prototype.slice.call(args, 1));
                     });
 
                     returnValue = this;
