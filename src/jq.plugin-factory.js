@@ -59,9 +59,9 @@ com.tniswong.jq = com.tniswong.jq || {};
                 delegate = com.tniswong.jq.PluginFactory.plugins[this.name];
 
                 pluginContext = new delegate.PluginContext($elem, defaultConfig, method);
-                pluginContext.init();
-
                 $elem.data(this.name, pluginContext);
+
+                pluginContext.init();
 
             } else {
 
